@@ -56,11 +56,25 @@ body {
      padding-bottom: 40px;
  }
  #userInputContainer{
-     margin-left: 330px;
+     margin-left: 470px;
      padding-top: 200px;
      height: 500px;
  }
  #assetInputField{
-     width: 475px;
+     width: 285px;
      margin-left: -15px;
+ }
+ #myChart{
+     height: 500px !important;
+     width: 900px !important;
+ }
+ #createChartButton{
+     margin-left: -15px;
+     background-color: #66A8EA !important;
+ }
+ #createChartButton:hover{
+     background-color: #3672CC !important;
+ }
+ label, option, select{
+     font-size: .9em !important;
  }
