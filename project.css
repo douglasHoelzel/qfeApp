@@ -56,12 +56,11 @@ body {
      padding-bottom: 40px;
  }
  #userInputContainer{
-     margin-left: 400px;
+     margin-left: 330px;
      padding-top: 200px;
      height: 500px;
-     width: 1000px;
  }
  #assetInputField{
-     width: 418px;
+     width: 475px;
      margin-left: -15px;
  }
