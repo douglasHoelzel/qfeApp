@@ -1,7 +1,3 @@
-/* Important: Carolina Blue is: #99badd */
-/*            Dark Blue is: #054e9c     */
-body {
-}
 .header{
     background-color: #66A8EA;
     margin: 0 auto;
@@ -71,10 +67,9 @@ body {
  #createChartButton{
      margin-left: -15px;
      background-color: #66A8EA !important;
+     border: none;
  }
  #createChartButton:hover{
      background-color: #3672CC !important;
- }
- label, option, select{
-     font-size: .9em !important;
+     border: none;
  }
