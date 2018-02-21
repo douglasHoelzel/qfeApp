@@ -4,51 +4,51 @@
         <!-- Main Form Inputs -->
         <div class="form-group row">
                <label for="investableUniverse" class="col-sm-2 col-form-label">Investable Universe</label>
-               <select name="profession" class="c-form-profession form-control col-sm-3">
-                   <option value="Your profession...">Placeholder1</option>
-                   <option value="Web design">Placeholder2</option>
-                   <option value="SEO">Placeholder3</option>
-                   <option value="Marketing">Placeholder4</option>
+               <select ng-model="investableUniverse" class="c-form-profession form-control col-sm-3">
+                   <option value="US Equities">US Equities</option>
+                   <option value="PH2">Placeholder2</option>
+                   <option value="PH3">Placeholder3</option>
+                   <option value="PH4">Placeholder4</option>
                </select>
         </div>
         <div class="form-group row">
               <label for="assets" class="col-sm-2 col-form-label">Assets</label>
               <div class="col-sm-3">
-                <input type="password" class="form-control" id="assetInputField">
+                <input ng-model="assets" class="form-control" id="assetInputField">
               </div>
         </div>
         <div class="form-group row">
                <label for="objectiveFunction" class="col-sm-2 col-form-label">Objective Function</label>
-               <select name="profession" class="c-form-profession form-control col-sm-3">
-                   <option value="Your profession...">Placeholder1</option>
-                   <option value="Web design">Placeholder2</option>
-                   <option value="SEO">Placeholder3</option>
-                   <option value="Marketing">Placeholder4</option>
+               <select ng-model="objectiveFunction" name="profession" class="c-form-profession form-control col-sm-3">
+                   <option value="Sharpe Ratio">Sharpe Ratio</option>
+                   <option value="PH2">Placeholder2</option>
+                   <option value="PH3">Placeholder3</option>
+                   <option value="PH4">Placeholder4</option>
                </select>
         </div>
         <div class="form-group row">
                <label id="rebalancingFrequency" for="rebalancingFrequency" class="col-sm-2 col-form-label">Rebalancing Frequency</label>
-               <select name="profession" class="c-form-profession form-control col-sm-3">
-                   <option value="Your profession...">Placeholder1</option>
-                   <option value="Web design">Placeholder2</option>
-                   <option value="SEO">Placeholder3</option>
-                   <option value="Marketing">Placeholder4</option>
+               <select ng-model="rebalancingFrequency" name="rebalancingFrequency" class="c-form-profession form-control col-sm-3">
+                   <option value="Daily">Daily</option>
+                   <option value="Weekly">Weekly</option>
+                   <option value="Monthly">Monthly</option>
                </select>
         </div>
         <div class="form-group row">
                <label for="benchmark" class="col-sm-2 col-form-label">Benchmark</label>
-               <select name="profession" class="c-form-profession form-control col-sm-3">
-                   <option value="Your profession...">Placeholder1</option>
-                   <option value="Web design">Placeholder2</option>
-                   <option value="SEO">Placeholder3</option>
-                   <option value="Marketing">Placeholder4</option>
+               <select ng-model="benchmark" name="profession" class="c-form-profession form-control col-sm-3">
+                   <option value="S&P500">S&P 500</option>
+                   <option value="PH2">Placeholder2</option>
+                   <option value="PH3">Placeholder3</option>
+                   <option value="PH4">Placeholder4</option>
                </select>
         </div>
 
             <!-- Submit Button -->
             <div class="form-group row">
               <div class="offset-sm-2 col-sm-10">
-                <button id="createChartButton" type="submit" class="btn btn-primary">Create Chart</button>
+                <button id="createChartButton" type="submit" class="btn btn-primary"
+                ng-click="createChart(investableUniverse, assets, objectiveFunction, rebalancingFrequency, benchmark); changeView()">Create Chart</button>
               </div>
             </div>
           </form>
