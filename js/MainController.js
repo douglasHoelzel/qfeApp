@@ -9,10 +9,12 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.objectiveFunction;
     $scope.location;
     $scope.loading = false;
+    $scope.myChart;
+    $scope.myChart2;
 
 
     // highcharts
-    $scope.getChart = function createChart() {
+    $scope.getChart = function getChart() {
         console.log("inside of getChart()");
         $scope.myChart = Highcharts.chart('chart1Container', {
             title: {
@@ -115,12 +117,15 @@ app.controller('myCtrl', function($scope, $http, $location) {
                 },
                 series: [{
                     name: 'Asset1',
+                    color: '#4C79D0',
                     data: [5, 3, 4, 7, 2]
                 }, {
                     name: 'Asset2',
+                    color: '#616665',
                     data: [2, 2, 3, 2, 1]
                 }, {
                     name: 'Asset3',
+                    color: '#41A37D',
                     data: [3, 4, 4, 2, 5]
                 }]
             });
