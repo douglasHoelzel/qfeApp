@@ -73,3 +73,8 @@
      background-color: #3672CC !important;
      border: none;
  }
+ #chart1Container {
+	height: 700px;
+    width: 900px;
+	margin: 0 auto
+}

@@ -8,6 +8,8 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.benchmark;
     $scope.objectiveFunction;
     $scope.location;
+    $scope.loading = false;
+
 
 
     // Button for creating chart
@@ -25,14 +27,14 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.changeView = function(){
         console.log("inside of change view");
         $location.path("graphView");
+
+        // Sample Line chart
     }
 
     // Next function
     $scope.nextFunction = function(){
         console.log("inside of next function");
     }
-
-
 
 
 
