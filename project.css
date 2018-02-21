@@ -73,8 +73,16 @@
      background-color: #3672CC !important;
      border: none;
  }
- #chart1Container {
-	height: 700px;
-    width: 900px;
-	margin: 0 auto
+ #chart1Container{
+     display: inline-block;
+     height: 400px;
+     width: 700px;
+ }
+ #chart2Container{
+     display: inline-block;
+     height: 400px;
+     width: 700px;
+ }
+ #graphViewContainer{
+ padding-top: 150px;
 }

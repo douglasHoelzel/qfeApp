@@ -1,6 +1,5 @@
 <div id="homeViewContainer">
     <div id="userInputContainer" class="container">
-        <!-- For Testing -->
         <!-- Main Form Inputs -->
         <div class="form-group row">
                <label for="investableUniverse" class="col-sm-2 col-form-label">Investable Universe</label>
@@ -48,7 +47,7 @@
             <div class="form-group row">
               <div class="offset-sm-2 col-sm-10">
                 <button id="createChartButton" type="submit" class="btn btn-primary"
-                ng-click="createChart(investableUniverse, assets, objectiveFunction, rebalancingFrequency, benchmark); changeView()">Create Chart</button>
+                ng-click="createChart(investableUniverse, assets, objectiveFunction, rebalancingFrequency, benchmark); getChart(); changeView()">Create Chart</button>
               </div>
             </div>
           </form>
