@@ -11,6 +11,12 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.loading = false;
 
 
+    // highcharts
+    $scope.getChart = function createChart() {
+        console.log("inside of getChart()");
+
+    };
+
 
     // Button for creating chart
     $scope.createChart = function createChart(investableUniverse, assets, objectiveFunction, rebalancingFrequency, benchmark) {
@@ -21,14 +27,12 @@ app.controller('myCtrl', function($scope, $http, $location) {
           showConfirmButton: false,
           timer: 1500
       })
+      $scope.getChart();
     };
 
     // Changes view on click of create chart button
     $scope.changeView = function(){
-        console.log("inside of change view");
         $location.path("graphView");
-
-        // Sample Line chart
     }
 
     // Next function
