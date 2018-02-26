@@ -143,11 +143,24 @@ app.controller('myCtrl', function($scope, $http, $location) {
       })
     };
 
+    $scope.getData = function(){
+            $http({
+              method: 'GET',
+              url: 'https://dog.ceo/api/breeds/list',
+              dataType: 'json',
+            }).then(function successCallback(response) {
+                var jsonResponse = JSON.stringify(response);
+                console.log("Response from AJAX: " + jsonResponse);
+              }, function errorCallback(response) {
+                console.log("Response (ERROR) from AJAX: " + response);
+              });
 
+    }
     // Changes view on click of create chart button
     $scope.changeView = function(){
         $location.path("graphView");
         setTimeout(function(){ $scope.getChart(); }, 1000);
+        $scope.getData();
 
     }
 
