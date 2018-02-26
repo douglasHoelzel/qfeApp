@@ -75,11 +75,13 @@
  }
  #chart1Container{
      display: inline-block;
+     padding-top: 30px;
      height: 400px;
      width: 700px;
  }
  #chart2Container{
      display: inline-block;
+     padding-top: 30px;
      height: 400px;
      width: 700px;
  }

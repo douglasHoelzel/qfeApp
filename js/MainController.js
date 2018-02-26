@@ -1,6 +1,5 @@
 var app = angular.module('myApp', ["ngRoute"]);
 app.controller('myCtrl', function($scope, $http, $location) {
-    $scope.testVar = "Test Variable";
     $scope.investableUniverse;
     $scope.assets;
     $scope.objectiveFunction;
@@ -15,7 +14,6 @@ app.controller('myCtrl', function($scope, $http, $location) {
 
     // highcharts
     $scope.getChart = function getChart() {
-        console.log("inside of getChart()");
         $scope.myChart = Highcharts.chart('chart1Container', {
             title: {
                 text: 'Visualization I'
@@ -47,10 +45,12 @@ app.controller('myCtrl', function($scope, $http, $location) {
 
                   series: [{
                       name: 'Portfolio',
-                      data: [43934, 52503, 57177, 52503, 97031, 119931, 137133, 154175]
+                      data: [43934, 52503, 57177, 52503, 97031, 119931, 137133, 154175],
+                      color: '#3498DB'
                   }, {
                       name: 'Benchmark',
-                      data: [12908, 51503, 52177, 55503, 90031, 109931, 127133, 160175]
+                      data: [12908, 51503, 52177, 55503, 90031, 109931, 127133, 160175],
+                      color: '#76D7C4'
                   }],
 
                   responsive: {
@@ -117,15 +117,15 @@ app.controller('myCtrl', function($scope, $http, $location) {
                 },
                 series: [{
                     name: 'Asset1',
-                    color: '#4C79D0',
+                    color: '#5DADE2',
                     data: [5, 3, 4, 7, 2]
                 }, {
                     name: 'Asset2',
-                    color: '#616665',
+                    color: '#76D7C4',
                     data: [2, 2, 3, 2, 1]
                 }, {
                     name: 'Asset3',
-                    color: '#41A37D',
+                    color: '#BFC9CA',
                     data: [3, 4, 4, 2, 5]
                 }]
             });
@@ -133,19 +133,22 @@ app.controller('myCtrl', function($scope, $http, $location) {
 
 
     // Button for creating chart
-    $scope.createChart = function createChart(investableUniverse, assets, objectiveFunction, rebalancingFrequency, benchmark) {
-        console.log("Create Chart Button Clicked");
+    $scope.createChart = function createChart(investableUniverse, assets,
+                                            objectiveFunction, rebalancingFrequency, benchmark) {
         swal({
           type: 'success',
           title: 'Chart Successfully Created',
           showConfirmButton: false,
-          timer: 1500
+          timer: 1000
       })
     };
+
 
     // Changes view on click of create chart button
     $scope.changeView = function(){
         $location.path("graphView");
+        setTimeout(function(){ $scope.getChart(); }, 1000);
+
     }
 
     // Next function
