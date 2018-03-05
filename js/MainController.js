@@ -184,7 +184,8 @@ app.controller('myCtrl', function($scope, $http, $location) {
 
     // Next function
     $scope.nextFunction = function(){
-        console.log("inside of next function");
+        console.log(" clicked");
+
     }
 
 
