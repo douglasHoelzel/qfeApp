@@ -1,5 +1,6 @@
 <div id="homeViewContainer">
     <div id="userInputContainer" class="container">
+        <form name="frm">
         <!-- Main Form Inputs -->
         <div class="form-group row">
                <label for="investableUniverse" class="col-sm-2 col-form-label">Investable Universe</label>
@@ -13,7 +14,10 @@
         <div class="form-group row">
               <label for="assets" class="col-sm-2 col-form-label">Assets</label>
               <div class="col-sm-3">
-                <input type="text" ng-model="assets" class="form-control" id="assetInputField">
+                <input type="text" ng-model="assets" class="form-control" id="assetInputField" required>
+                <div class="valid-feedback">
+                Looks good!
+               </div>
               </div>
         </div>
         <div class="form-group row">
@@ -34,8 +38,8 @@
                </select>
         </div>
         <div class="form-group row">
-               <label for="benchmark" class="col-sm-2 col-form-label">Benchmark</label>
-               <select ng-model="benchmark" name="profession" class="c-form-profession form-control col-sm-3">
+               <label for="benchmark" class="col-sm-2 col-form-label">Benchmark></label>
+               <select ng-model="benchmark" name="profession" class="c-form-profession form-control col-sm-3" required>
                    <option value="S&P500">S&P 500</option>
                    <option value="PH2">Placeholder2</option>
                    <option value="PH3">Placeholder3</option>
@@ -46,7 +50,7 @@
             <!-- Submit Button -->
             <div class="form-group row">
               <div class="offset-sm-2 col-sm-10">
-                <button id="createChartButton" type="submit" class="btn btn-primary"
+                <button ng-disabled="frm.$invalid" id="createChartButton" type="submit" class="btn btn-primary"
                 ng-click="createChart(investableUniverse, assets, objectiveFunction, rebalancingFrequency, benchmark);changeView();">Create Chart</button>
               </div>
             </div>
