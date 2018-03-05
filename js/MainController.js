@@ -9,11 +9,13 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.location;
     $scope.loading = false;
     $scope.myChart;
-    $scope.myChart2;
 
 
     // highcharts
     $scope.getChart = function getChart() {
+        $('#myOverlay').show();
+        $scope.loading = true;
+
         $scope.myChart = Highcharts.chart('chart1Container', {
             title: {
                 text: 'Visualization I'
@@ -129,12 +131,17 @@ app.controller('myCtrl', function($scope, $http, $location) {
                     data: [3, 4, 4, 2, 5]
                 }]
             });
+            $scope.loading = false;
+            $('#myOverlay').hide();
+
     };
 
 
     // Button for creating chart
     $scope.createChart = function createChart(investableUniverse, assets,
                                             objectiveFunction, rebalancingFrequency, benchmark) {
+        console.log("IU: " + investableUniverse + " ||  Asset: " + assets + " || OF: " +
+                    objectiveFunction + " || RF: " + rebalancingFrequency + " || BM: " + benchmark);
         swal({
           type: 'success',
           title: 'Chart Successfully Created',
@@ -143,6 +150,16 @@ app.controller('myCtrl', function($scope, $http, $location) {
       })
     };
 
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 1 /* Specify minimum characters required for showing result */
+    },
+    {
+        name: 'asset',
+        source: $scope.asset
+    });
     $scope.getData = function(){
             $http({
               method: 'GET',
@@ -158,6 +175,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
     }
     // Changes view on click of create chart button
     $scope.changeView = function(){
+        console.log("Inside of change view");
         $location.path("graphView");
         setTimeout(function(){ $scope.getChart(); }, 1000);
         $scope.getData();
@@ -168,6 +186,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.nextFunction = function(){
         console.log("inside of next function");
     }
+
 
 
 
