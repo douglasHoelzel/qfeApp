@@ -9,13 +9,17 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.location;
     $scope.loading = false;
     $scope.myChart;
+    $scope.startDate;
+    $scope.toDate;
+    $scope.fromDate;
+    $scope.endDate;
 
 
     // highcharts
     $scope.getChart = function getChart() {
         $('#myOverlay').show();
         $scope.loading = true;
-
+        console.log("Inside of get charts function");
         $scope.myChart = Highcharts.chart('chart1Container', {
             title: {
                 text: 'Visualization I'
@@ -183,8 +187,11 @@ app.controller('myCtrl', function($scope, $http, $location) {
     }
 
     // Next function
-    $scope.nextFunction = function(){
-        console.log(" clicked");
+    $scope.invalidFormClick = function(){
+        swal({
+          type: 'error',
+          text: 'Finish completing form',
+        })
 
     }
 

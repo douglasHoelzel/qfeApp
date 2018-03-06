@@ -32,13 +32,11 @@
         <div class="form-group row">
                <label id="rebalancingFrequency" for="rebalancingFrequency" class="col-sm-2 col-form-label">Rebalancing Frequency</label>
                <select ng-model="rebalancingFrequency" name="rebalancingFrequency" class="c-form-profession form-control col-sm-3" required>
-                   <option value="Daily">Daily</option>
-                   <option value="Weekly">Weekly</option>
                    <option value="Monthly">Monthly</option>
                </select>
         </div>
         <div class="form-group row">
-               <label for="benchmark" class="col-sm-2 col-form-label">Benchmark></label>
+               <label for="benchmark" class="col-sm-2 col-form-label">Benchmark</label>
                <select ng-model="benchmark" name="profession" class="c-form-profession form-control col-sm-3" required>
                    <option value="S&P500">S&P 500</option>
                    <option value="PH2">Placeholder2</option>
@@ -46,12 +44,11 @@
                    <option value="PH4">Placeholder4</option>
                </select>
         </div>
-
             <!-- Submit Button -->
             <div class="form-group row">
               <div class="offset-sm-2 col-sm-10">
                 <button ng-click="frm.$valid && createChart(investableUniverse, assets, objectiveFunction, rebalancingFrequency, benchmark);
-                frm.$valid &&  changeView();" id="createChartButton" type="button" class="btn btn-primary">Create Chart</button>
+                frm.$valid &&  changeView(); frm.$invalid && invalidFormClick()" id="createChartButton" type="button" class="btn btn-primary">Create Chart</button>
               </div>
             </div>
           </form>
