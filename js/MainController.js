@@ -13,12 +13,14 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.toDate;
     $scope.fromDate;
     $scope.endDate;
+    $scope.assetList = ["IYJ","IVV","IYH","IBB", "IYW", "IYF", "IYE", "IYC", "IHE"];
+    $scope.startDate = "2015-12-31";
+    $scope.endDate = "2016-06-30";
+    $scope.frequency = "monthly";
 
 
     // highcharts
     $scope.getChart = function getChart() {
-        $('#myOverlay').show();
-        $scope.loading = true;
         console.log("Inside of get charts function");
         $scope.myChart = Highcharts.chart('chart1Container', {
             title: {
@@ -135,58 +137,56 @@ app.controller('myCtrl', function($scope, $http, $location) {
                     data: [3, 4, 4, 2, 5]
                 }]
             });
-            $scope.loading = false;
-            $('#myOverlay').hide();
-
     };
 
-
-    // Button for creating chart
-    $scope.createChart = function createChart(investableUniverse, assets,
-                                            objectiveFunction, rebalancingFrequency, benchmark) {
+    // Ajax Call for Data
+    $scope.getData = function(investableUniverse, assets, objectiveFunction, rebalancingFrequency, benchmark){
         console.log("IU: " + investableUniverse + " ||  Asset: " + assets + " || OF: " +
                     objectiveFunction + " || RF: " + rebalancingFrequency + " || BM: " + benchmark);
-        swal({
-          type: 'success',
-          title: 'Chart Successfully Created',
-          showConfirmButton: false,
-          timer: 1000
-      })
-    };
+        $('#myOverlay').show();
+        console.log("Getting data....");
+            $.ajax({
+                  type: "POST",
+                  url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
+                  data: JSON.stringify({
 
-    // Initializing the typeahead
-    $('.typeahead').typeahead({
-        hint: true,
-        highlight: true, /* Enable substring highlighting */
-        minLength: 1 /* Specify minimum characters required for showing result */
-    },
-    {
-        name: 'asset',
-        source: $scope.asset
-    });
-    $scope.getData = function(){
-            $http({
-              method: 'GET',
-              url: 'https://dog.ceo/api/breeds/list',
-              dataType: 'json',
-            }).then(function successCallback(response) {
-                var jsonResponse = JSON.stringify(response);
-                console.log("Response from AJAX: " + jsonResponse);
-              }, function errorCallback(response) {
-                console.log("Response (ERROR) from AJAX: " + response);
-              });
+                              assets: $scope.assetList,
+                              start_date: $scope.startDate,
+                              end_date: $scope.endDate,
+                              frequency: $scope.frequency
+                        }),
+                  contentType: "application/json; charset=UTF-8'",
+                  dataType: "json",
+                  success: function(data) {
+                      console.log(JSON.stringify(data));
+                  },
+                  error: function(data){
+                      console.log("AJAX Call Failed");
+                      $('#myOverlay').hide();
+                  },
+                  complete: function (data) {
+                      console.log("Done ajax call");
+                      $('#myOverlay').hide();
+                      console.log("Finished getting data");
+                      swal({
+                        type: 'success',
+                        title: 'Chart Successfully Created',
+                        showConfirmButton: false,
+                        timer: 1000
+                        }).then((result) => {
+                               $scope.getChart();
+                        })
+                  }
+                });
 
     }
     // Changes view on click of create chart button
     $scope.changeView = function(){
         console.log("Inside of change view");
         $location.path("graphView");
-        setTimeout(function(){ $scope.getChart(); }, 1000);
-        $scope.getData();
-
     }
 
-    // Next function
+    // Invalid Click Popup
     $scope.invalidFormClick = function(){
         swal({
           type: 'error',
@@ -194,9 +194,4 @@ app.controller('myCtrl', function($scope, $http, $location) {
         })
 
     }
-
-
-
-
-
 });
