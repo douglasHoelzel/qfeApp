@@ -13,7 +13,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.toDate;
     $scope.fromDate;
     $scope.endDate;
-    $scope.assetList = ["IYJ","IVV","IYH","IBB", "IYW", "IYF", "IYE", "IYC", "IHE"];
+    $scope.usEquityList = ["IYJ","IVV","IYH","IBB", "IYW", "IYF", "IYE", "IYC", "IHE"];
     $scope.startDate = "2015-12-31";
     $scope.endDate = "2016-06-30";
     $scope.frequency = "monthly";
@@ -150,7 +150,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
                   url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
                   data: JSON.stringify({
 
-                              assets: $scope.assetList,
+                              assets: $scope.usEquityList,
                               start_date: $scope.startDate,
                               end_date: $scope.endDate,
                               frequency: $scope.frequency
@@ -182,7 +182,6 @@ app.controller('myCtrl', function($scope, $http, $location) {
     }
     // Changes view on click of create chart button
     $scope.changeView = function(){
-        console.log("Inside of change view");
         $location.path("graphView");
     }
 
