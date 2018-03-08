@@ -81,19 +81,27 @@
      width: 700px;
      padding-bottom: 90px;
  }
- #chart2Container{
+ #selectedChartArea{
+     padding-top: 20px;
+     margin: auto;
+     padding-top: 30px;
+     height: 620px;
+     width: 1000px;
+     padding-bottom: 20px;
+     background-color: gray !important;
+ }
+#chart2Container{
      margin: auto;
      padding-top: 30px;
      height: 400px;
      width: 700px;
  }
- #graphViewContainer{
+#graphViewContainer{
  padding-top: 150px;
 }
 #myOverlay {
   opacity:    0.5;
   background: #ACACAC;
-  /* background: #464646; */
   width:      100%;
   height:     100%;
   z-index:    2;
@@ -102,93 +110,10 @@
   position:   fixed;
   display: none;
 }
-.loader {
-  color: #4A97FF;
-  position: fixed;
-  z-index: 100;
-  font-size: 90px;
-  text-indent: -9999em;
-  overflow: hidden;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  margin: 72px auto;
-  top: 45%;
-  left: 44.2%;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-  animation: load6 1.7s infinite ease, round 1.7s infinite ease;
-}
-@-webkit-keyframes load6 {
-  0% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-  5%,
-  95% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-  10%,
-  59% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
-  }
-  20% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
-  }
-  38% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
-  }
-  100% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-}
-@keyframes load6 {
-  0% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-  5%,
-  95% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-  10%,
-  59% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
-  }
-  20% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
-  }
-  38% {
-    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
-  }
-  100% {
-    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
-  }
-}
-@-webkit-keyframes round {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes round {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
 #startDateFieldInput{
     border-radius: 5px;
     margin-left: 100px;
-    width: 330px !important;
+    width: 285px !important;
     margin-bottom: 20px;
 }
 #endDateFieldInput{
@@ -199,5 +124,7 @@
 }
 .datepicker.dropdown-menu{
     margin-left: 160px;
-
+}
+#chart1Select{
+    background-color: red !important;
 }

@@ -15,12 +15,13 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.optimizedReturnsValues = [];
     // Bar Chart Variables
     $scope.optimizedWeightsDates = [];
+    $scope.myChart;
+    $scope.myChart2;
 
-
-    // highcharts
+    // Highcharts
     $scope.getChart = function getChart() {
         // Line Chart
-        $scope.myChart = Highcharts.chart('chart1Container', {
+        $scope.myChart = Highcharts.chart('chart1', {
             title: {
                 text: 'Visualization I'
                   },
@@ -34,12 +35,19 @@ app.controller('myCtrl', function($scope, $http, $location) {
                   plotOptions: {spline: {marker: {enabled: true}}
                   },
                   series: [{name: 'Portfolio',data:  $scope.optimizedReturnsValues,color: '#3498DB'}],
+                  exporting: { buttons: {customButton: {text: 'View Alone',
+                   onclick: function () {
+                       $scope.selectChartClick("1");
+                        }
+                    }
+                   }
+                 },
                   responsive: {rules: [{condition: {maxWidth: 500},
                   chartOptions: {legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'}}
                   }]}
               });
           // Bar Chart
-          $scope.myChart2 = Highcharts.chart('chart2Container', {
+          $scope.myChart2 = Highcharts.chart('chart2', {
                 chart: {type: 'column'},
                 title: {text: 'Visualization II'},
                 xAxis: {categories: $scope.optimizedWeightsDates,},
@@ -72,7 +80,14 @@ app.controller('myCtrl', function($scope, $http, $location) {
                     name: 'Asset3',
                     color: '#BFC9CA',
                     data: [3, 4, 4, 2, 5]
-                }]
+                }],
+                exporting: { buttons: {customButton: {text: 'View Alone',
+                 onclick: function () {
+                     $scope.selectChartClick("2");
+                      }
+                  }
+                 }
+               },
             });
     };
 
@@ -88,7 +103,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
             $.ajax({
                   type: "POST",
                   url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
-                  data: JSON.stringify({ assets: $scope.usEquityList, start_date: "2015-12-31", end_date: "2016-06-30", frequency: $scope.frequency }),
+                  data: JSON.stringify({ assets: $scope.usEquityList, start_date: $scope.startDate, end_date: $scope.endDate, frequency: $scope.frequency }),
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
                   success: function(data) {
@@ -113,6 +128,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
                         })
                   }
                 });
+
 
     }
     // Changes view on click of create chart button
@@ -147,5 +163,11 @@ app.controller('myCtrl', function($scope, $http, $location) {
                     $scope.optimizedWeightsDates.push(key);
         }
         // Parses All
+    }
+    // Selects Chart and changes view
+    $scope.selectChartClick = function(chartNumber){
+        console.log("Chart number to be switched to: " + chartNumber);
+        $location.url("selectedGraph");
+        $scope.$apply();
     }
 });
