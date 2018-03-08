@@ -88,12 +88,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
             $.ajax({
                   type: "POST",
                   url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
-                  data: JSON.stringify({
-                              assets: $scope.usEquityList,
-                              start_date: "2015-12-31",
-                              end_date: "2016-06-30",
-                              frequency: $scope.frequency
-                        }),
+                  data: JSON.stringify({ assets: $scope.usEquityList, start_date: "2015-12-31", end_date: "2016-06-30", frequency: $scope.frequency }),
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
                   success: function(data) {
@@ -107,9 +102,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
                       $('#myOverlay').hide();
                   },
                   complete: function (data) {
-                      console.log("Done ajax call");
                       $('#myOverlay').hide();
-                      console.log("Finished getting data");
                       swal({
                         type: 'success',
                         title: 'Chart Successfully Created',
@@ -129,9 +122,14 @@ app.controller('myCtrl', function($scope, $http, $location) {
 
     // Invalid Click Popup
     $scope.invalidFormClick = function(){
+        $('#userInputContainer').hide();
         swal({
           type: 'error',
           text: 'Finish completing form',
+          showConfirmButton: false,
+          timer: 1000
+        }).then((result) => {
+              $('#userInputContainer').show();
         })
     }
 
