@@ -185,3 +185,19 @@
     transform: rotate(360deg);
   }
 }
+#startDateFieldInput{
+    border-radius: 5px;
+    margin-left: 100px;
+    width: 330px !important;
+    margin-bottom: 20px;
+}
+#endDateFieldInput{
+    border-radius: 5px;
+    margin-left: 108px;
+    width: 330px !important;
+    margin-bottom: 20px;
+}
+.datepicker.dropdown-menu{
+    margin-left: 160px;
+
+}

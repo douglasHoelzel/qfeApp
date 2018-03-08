@@ -18,6 +18,9 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.endDate = "2016-06-30";
     $scope.frequency = "monthly";
 
+    // Datepicker
+    $('.datepicker').datepicker();
+
 
     // highcharts
     $scope.getChart = function getChart() {
@@ -158,7 +161,9 @@ app.controller('myCtrl', function($scope, $http, $location) {
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
                   success: function(data) {
+                      console.log("Data from Ajax Call below:")
                       console.log(JSON.stringify(data));
+                      $scope.parseData(data);
                   },
                   error: function(data){
                       console.log("AJAX Call Failed");
@@ -191,6 +196,17 @@ app.controller('myCtrl', function($scope, $http, $location) {
           type: 'error',
           text: 'Finish completing form',
         })
+    }
+
+    // Parses data coming from api
+    $scope.parseData = function(data){
+        console.log("Inside of data parser");
+
+        var plainData = data;
+        console.log("JSON plain: " + plainData);
+
+
+
 
     }
 });
