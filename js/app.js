@@ -3,13 +3,13 @@ app.config(function($routeProvider) {
     .when("/", {
         templateUrl : "home.html"
     })
-    .when("/home", {
+    .when("/home/", {
         templateUrl : "home.html"
     })
-    .when("/graphView", {
+    .when("/graphView/", {
         templateUrl : "graphView.html"
     })
-    .when("/selectedGraph", {
+    .when("/selectedGraph/", {
         templateUrl : "selectedGraph.html"
     });
 });

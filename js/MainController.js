@@ -166,8 +166,8 @@ app.controller('myCtrl', function($scope, $http, $location) {
     }
     // Selects Chart and changes view
     $scope.selectChartClick = function(chartNumber){
-        console.log("Chart number to be switched to: " + chartNumber);
-        $location.url("selectedGraph");
+        $location.url("/selectedGraph/");
         $scope.$apply();
+        $scope.getChart();
     }
 });
