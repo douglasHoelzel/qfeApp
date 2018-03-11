@@ -18,7 +18,10 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.optimizedWeightsDates = [];
     $rootScope.myChart;
     $rootScope.myChart2;
-
+    /* Notes:
+        still stuck on getting charts to populate globally over
+        the angular view change
+    */
     // Highcharts
     $rootScope.getChart = function getChart() {
         console.log("Getting graphs now...");
@@ -48,6 +51,8 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   chartOptions: {legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'}}
                   }]}
               });
+
+              $('#chart1').append('chart1');
               $rootScope.$apply();
           // Bar Chart
           $rootScope.myChart2 = Highcharts.chart('chart2', {
@@ -102,8 +107,11 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         $scope.frequency = frequency.toLowerCase();
         $scope.startDate = Date.parse(startDate).toString("yyyy-MM-dd");
         $scope.endDate = Date.parse(endDate).toString("yyyy-MM-dd");
+        console.log("SD :"+ $scope.startDate + " ED: " + $scope.endDate);
         $('#myOverlay').show();
         $rootScope.loading = true;
+
+
         console.log("Starting AJAX Call....");
             $.ajax({
                   type: "POST",
