@@ -1,5 +1,6 @@
 var app = angular.module('myApp', ["ngRoute"]);
 app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
+    $rootScope.loading = false;
     $scope.investableUniverse = "US Equities";
     $scope.objectiveFunction = "Sharpe Ratio";
     $scope.frequency = "monthly";
@@ -17,10 +18,10 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.optimizedWeightsDates = [];
     $rootScope.myChart;
     $rootScope.myChart2;
-    $rootScope.loading = false;
 
     // Highcharts
     $rootScope.getChart = function getChart() {
+        console.log("Getting graphs now...");
         // Line Chart
         $rootScope.myChart = Highcharts.chart('chart1', {
             title: {
@@ -47,7 +48,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   chartOptions: {legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'}}
                   }]}
               });
-              $rootScope.$apply()
+              $rootScope.$apply();
           // Bar Chart
           $rootScope.myChart2 = Highcharts.chart('chart2', {
                 chart: {type: 'column'},
@@ -91,7 +92,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                  }
                },
             });
-            $rootScope.$apply()
+            $rootScope.$apply();
     };
 
     // Ajax Call for Data
@@ -124,6 +125,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   },
                   complete: function (data) {
                       $rootScope.loading = false;
+                      setTimeout(function(){}, 2000);
                       $('#myOverlay').hide();
                       swal({
                         type: 'success',
@@ -174,9 +176,9 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     // Selects Chart and changes view
     $scope.selectChartClick = function(chartNumber){
         $location.url("/selectedGraph/");
+        console.log("Switching to selected graph view");
         $scope.$apply();
         $rootScope.getChart();
-        $rootScope.$apply()
-        $scope.$apply();
+        $rootScope.$apply();
     }
 });
