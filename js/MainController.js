@@ -1,5 +1,5 @@
 var app = angular.module('myApp', ["ngRoute"]);
-app.controller('myCtrl', function($scope, $http, $location) {
+app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.investableUniverse = "US Equities";
     $scope.objectiveFunction = "Sharpe Ratio";
     $scope.frequency = "monthly";
@@ -15,13 +15,14 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.optimizedReturnsValues = [];
     // Bar Chart Variables
     $scope.optimizedWeightsDates = [];
-    $scope.myChart;
-    $scope.myChart2;
+    $rootScope.myChart;
+    $rootScope.myChart2;
+    $rootScope.loading = false;
 
     // Highcharts
-    $scope.getChart = function getChart() {
+    $rootScope.getChart = function getChart() {
         // Line Chart
-        $scope.myChart = Highcharts.chart('chart1', {
+        $rootScope.myChart = Highcharts.chart('chart1', {
             title: {
                 text: 'Visualization I'
                   },
@@ -46,8 +47,9 @@ app.controller('myCtrl', function($scope, $http, $location) {
                   chartOptions: {legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'}}
                   }]}
               });
+              $rootScope.$apply()
           // Bar Chart
-          $scope.myChart2 = Highcharts.chart('chart2', {
+          $rootScope.myChart2 = Highcharts.chart('chart2', {
                 chart: {type: 'column'},
                 title: {text: 'Visualization II'},
                 xAxis: {categories: $scope.optimizedWeightsDates,},
@@ -89,6 +91,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
                  }
                },
             });
+            $rootScope.$apply()
     };
 
     // Ajax Call for Data
@@ -99,6 +102,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
         $scope.startDate = Date.parse(startDate).toString("yyyy-MM-dd");
         $scope.endDate = Date.parse(endDate).toString("yyyy-MM-dd");
         $('#myOverlay').show();
+        $rootScope.loading = true;
         console.log("Starting AJAX Call....");
             $.ajax({
                   type: "POST",
@@ -110,13 +114,16 @@ app.controller('myCtrl', function($scope, $http, $location) {
                       $scope.parseData(data);
                   },
                   error: function(data){
+                      $rootScope.loading = false;
                       swal({
                         type: 'error',
                         text: 'Error, Try submitting again',
                       })
                       $('#myOverlay').hide();
+
                   },
                   complete: function (data) {
+                      $rootScope.loading = false;
                       $('#myOverlay').hide();
                       swal({
                         type: 'success',
@@ -124,7 +131,7 @@ app.controller('myCtrl', function($scope, $http, $location) {
                         showConfirmButton: false,
                         timer: 1000
                         }).then((result) => {
-                               $scope.getChart();
+                               $rootScope.getChart();
                         })
                   }
                 });
@@ -168,6 +175,8 @@ app.controller('myCtrl', function($scope, $http, $location) {
     $scope.selectChartClick = function(chartNumber){
         $location.url("/selectedGraph/");
         $scope.$apply();
-        $scope.getChart();
+        $rootScope.getChart();
+        $rootScope.$apply()
+        $scope.$apply();
     }
 });
