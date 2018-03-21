@@ -113,13 +113,16 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
         console.log("Starting AJAX Call....");
             $.ajax({
-                  type: "POST",
-                  url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
+                 // type: "POST",
+                 type: "GET",
+                  // url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
+                  url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
                   data: JSON.stringify({ assets: $scope.usEquityList, start_date: $scope.startDate, end_date: $scope.endDate, frequency: $scope.frequency }),
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
                   success: function(data) {
                       $scope.parseData(data);
+                      console.log(data);
                   },
                   error: function(data){
                       $rootScope.loading = false;
@@ -184,12 +187,19 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.selectChartClick = function(chartNumber){
         console.log("Chart Number being passed in: " + chartNumber);
         console.log("View along button clicked");
-        var x = document.getElementById("chart2");
+
+        if(chartNumber == 1){
+            var x = document.getElementById("chart2");
+        }
+        else{
+            var x = document.getElementById("chart1");
+        }
              if (x.style.display === "none") {
                  x.style.display = "block";
              } else {
                  x.style.display = "none";
              }
+        $('chart1').css("width", "1000px");
     }
 
 
