@@ -113,10 +113,10 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
         console.log("Starting AJAX Call....");
             $.ajax({
-                 // type: "POST",
-                 type: "GET",
-                  // url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
-                  url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
+                  type: "POST",
+                 //type: "GET",
+                  url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
+                  //url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
                   data: JSON.stringify({ assets: $scope.usEquityList, start_date: $scope.startDate, end_date: $scope.endDate, frequency: $scope.frequency }),
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
@@ -199,7 +199,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
              } else {
                  x.style.display = "none";
              }
-        $('chart1').css("width", "1000px");
+        $('#chart1').css("background-color:", "red !important");
     }
 
 
