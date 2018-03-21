@@ -50,7 +50,6 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   }]}
               });
 
-              $('#chart1').append('chart1');
               $scope.$apply();
               $rootScope.$apply();
           // Bar Chart
@@ -113,10 +112,10 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
         console.log("Starting AJAX Call....");
             $.ajax({
-                  type: "POST",
-                 //type: "GET",
-                  url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
-                  //url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
+                 // type: "POST",
+                 type: "GET",
+                  //url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
+                  url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
                   data: JSON.stringify({ assets: $scope.usEquityList, start_date: $scope.startDate, end_date: $scope.endDate, frequency: $scope.frequency }),
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
@@ -181,7 +180,6 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         for (var key in data.optimized_weights) {
                     $scope.optimizedWeightsDates.push(key);
         }
-        // Parses All
     }
     // Selects Chart and changes view
     $scope.selectChartClick = function(chartNumber){
@@ -189,17 +187,23 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         console.log("View along button clicked");
 
         if(chartNumber == 1){
-            var x = document.getElementById("chart2");
+            var graphToHide = document.getElementById("chart2");
+        }else{
+            var graphToHide = document.getElementById("chart1");
         }
-        else{
-            var x = document.getElementById("chart1");
-        }
-             if (x.style.display === "none") {
-                 x.style.display = "block";
-             } else {
-                 x.style.display = "none";
-             }
-        $('#chart1').css("background-color:", "red !important");
+            if (graphToHide.style.display === "none") {
+                graphToHide.style.display = "block";
+            } else {
+                graphToHide.style.display = "none";
+            }
+         var x = document.getElementById("chart1Container");
+         var y = document.getElementById("chart1");
+         x.style.backgroundColor = "orange";
+         x.style.width = "1200px";
+
+         y.style.backgroundColor = "green";
+         y.style.width = "1200px";
+
     }
 
 
