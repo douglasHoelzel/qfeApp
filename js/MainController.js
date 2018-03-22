@@ -16,10 +16,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.optimizedWeightsDates = [];
     $rootScope.myChart;
     $rootScope.myChart2;
-    /* Notes:
-        still stuck on getting charts to populate globally over
-        the angular view change
-    */
+
     // Highcharts
     $rootScope.getChart = function getChart() {
         console.log("Getting graphs now...");
@@ -146,15 +143,12 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                         })
                   }
                 });
-
-
     }
     // Changes view on click of create chart button
     $scope.changeView = function(){
         $location.path("graphView");
     }
-
-    // Invalid Click Popup
+    // Invalid Form Popup
     $scope.invalidFormClick = function(){
         $('#userInputContainer').hide();
         swal({
@@ -209,6 +203,4 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
             }
          $scope.getChart();
     }
-
-
 });
