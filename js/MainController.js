@@ -161,7 +161,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
           type: 'error',
           text: 'Finish completing form',
           showConfirmButton: false,
-          timer: 1000
+          timer: 2000
         }).then((result) => {
               $('#userInputContainer').show();
         })

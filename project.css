@@ -37,14 +37,26 @@
     height: 30px;
     font-size: .8em;
     margin-top: 100px;
-    background-color: #E9E9E9 !important;
+    background-color: #fff !important;
 }
 .navbar-nav > li{
-  padding-left:30px;
+  padding-left: 1px;
   padding-right:30px;
 }
 .navbar-nav:first-child{
-    margin-left: 0px;
+    margin-left: -14px;
+}
+#homeButton{
+  background: url(../images/home.png) no-repeat 6px center;
+  width: 40px !important;
+  height: 40px !important;
+  display: block;
+}
+#homeButton:hover{
+  background: url(../images/home.png) no-repeat 6px center;
+  width: 40px !important;
+  height: 40px !important;
+  display: block;
 }
  /* End Navbar Styling */
  #headingPadder{
