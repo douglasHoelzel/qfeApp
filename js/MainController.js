@@ -38,7 +38,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   plotOptions: {spline: {marker: {enabled: true}}
                   },
                   series: [{name: 'Portfolio',data:  $rootScope.optimizedReturnsValues,color: '#3498DB'}],
-                  exporting: { buttons: {customButton: {text: 'View Alone',
+                  exporting: { buttons: {customButton: {text: 'Enlarge',
                    onclick: function () {
                        $scope.selectChartClick("1");
                         }
@@ -87,7 +87,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                     color: '#BFC9CA',
                     data: [3, 4, 4, 2, 5]
                 }],
-                exporting: { buttons: {customButton: {text: 'View Alone',
+                exporting: { buttons: {customButton: {text: 'Enlarge',
                  onclick: function () {
                      $scope.selectChartClick("2");
                       }
@@ -188,23 +188,28 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
             var graphToHide = document.getElementById("chart2");
             var graphToShow= document.getElementById("chart1").width = "1200px";
             var graphToShowContainer = document.getElementById("chart" + chartNumber + "Container");
-            graphToShowContainer.style.width = "1200px";
+                graphToShowContainer.style.width = "1200px";
         }else{
             console.log("Case 2");
             var graphToHide = document.getElementById("chart1");
-            var graphToShow = document.getElementById("chart2");
+            var graphToShow = document.getElementById("chart2").width = "1200px";
             var graphToShowContainer = document.getElementById("chart" + chartNumber + "Container");
                 graphToShowContainer.style.width = "1200px";
+                document.getElementById("chart2").style.marginTop = "-200px";
+                document.getElementById("chart2Container").style.marginTop = "-200px";
         }
             if (graphToHide.style.display === "none") {
                 graphToHide.style.display = "block";
                 graphToShow.width = "700px";
                 graphToShowContainer.style.width = "700px";
+                if(chartNumber == 2){
+                    document.getElementById("chart2").style.marginTop = "10px";
+                    document.getElementById("chart2Container").style.marginTop = "10px";
+                }
             } else {
                 graphToHide.style.display = "none";
             }
          $scope.getChart();
-
     }
 
 
