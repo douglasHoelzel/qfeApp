@@ -184,13 +184,11 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     // Selects Chart and changes view
     $scope.selectChartClick = function(chartNumber){
         if(chartNumber == 1){
-            console.log("Case 1");
             var graphToHide = document.getElementById("chart2");
             var graphToShow= document.getElementById("chart1").width = "1200px";
             var graphToShowContainer = document.getElementById("chart" + chartNumber + "Container");
                 graphToShowContainer.style.width = "1200px";
         }else{
-            console.log("Case 2");
             var graphToHide = document.getElementById("chart1");
             var graphToShow = document.getElementById("chart2").width = "1200px";
             var graphToShowContainer = document.getElementById("chart" + chartNumber + "Container");
