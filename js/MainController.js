@@ -45,7 +45,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                     }
                    }
                  },
-                  responsive: {rules: [{condition: {maxWidth: 500},
+                  responsive: {rules: [{condition: {maxWidth: 1500},
                   chartOptions: {legend: {layout: 'horizontal', align: 'center', verticalAlign: 'bottom'}}
                   }]}
               });
@@ -183,26 +183,27 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     }
     // Selects Chart and changes view
     $scope.selectChartClick = function(chartNumber){
-        console.log("Chart Number being passed in: " + chartNumber);
-        console.log("View along button clicked");
-
         if(chartNumber == 1){
+            console.log("Case 1");
             var graphToHide = document.getElementById("chart2");
+            var graphToShow= document.getElementById("chart1").width = "1200px";
+            var graphToShowContainer = document.getElementById("chart" + chartNumber + "Container");
+            graphToShowContainer.style.width = "1200px";
         }else{
+            console.log("Case 2");
             var graphToHide = document.getElementById("chart1");
+            var graphToShow = document.getElementById("chart2");
+            var graphToShowContainer = document.getElementById("chart" + chartNumber + "Container");
+                graphToShowContainer.style.width = "1200px";
         }
             if (graphToHide.style.display === "none") {
                 graphToHide.style.display = "block";
+                graphToShow.width = "700px";
+                graphToShowContainer.style.width = "700px";
             } else {
                 graphToHide.style.display = "none";
             }
-         var x = document.getElementById("chart1Container");
-         var y = document.getElementById("chart1");
-         x.style.backgroundColor = "orange";
-         x.style.width = "1200px";
-
-         y.style.backgroundColor = "green";
-         y.style.width = "1200px";
+         $scope.getChart();
 
     }
 
