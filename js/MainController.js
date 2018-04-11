@@ -16,20 +16,12 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $rootScope.optimizedReturnsDates = [];
     $rootScope.optimizedReturnsValues = [];
     $scope.optimizedWeightsDates = [];
-
     $rootScope.benchmarkReturnsDates = [];
     $rootScope.benchmarkReturnsValues = [];
     $scope.benchmarkWeightsDates = [];
     $scope.benchmarkDataNames = [];
-
-    $scope.optimizedWeightsAsset1 = [];
-    $scope.optimizedWeightsAsset2 = [];
-    $scope.optimizedWeightsAsset3 = [];
-    $scope.optimizedWeightsAsset4 = [];
-    $scope.optimizedWeightsAsset5 = [];
-    $scope.optimizedWeightsAsset6 = [];
-    $scope.optimizedWeightsAsset7 = [];
-    $scope.optimizedWeightsAsset8 = [];
+    $scope.optimizedWeightsAsset1 = [];$scope.optimizedWeightsAsset2 = [];$scope.optimizedWeightsAsset3 = [];$scope.optimizedWeightsAsset4 = [];
+    $scope.optimizedWeightsAsset5 = [];$scope.optimizedWeightsAsset6 = [];$scope.optimizedWeightsAsset7 = [];$scope.optimizedWeightsAsset8 = [];
     $scope.optimizedWeightsAsset9 = [];
 
 
@@ -196,7 +188,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                     $rootScope.optimizedReturnsValues.push(data.benchmark_portfolio_intersection[key][0]);
                     $rootScope.benchmarkReturnsValues.push(data.benchmark_portfolio_intersection[key][1]);
         }
-        
+
         // Parses All Benchmark Data
         for (var key in data.optimized_weights) {
             $scope.optimizedWeightsAsset1.push(Math.abs(data.optimized_weights[key]['0'][1]));
