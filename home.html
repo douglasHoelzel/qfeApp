@@ -9,10 +9,11 @@
                </select>
         </div>
         <div class="form-group row">
-              <label for="assets" class="col-sm-2 col-form-label">Assets</label>
-              <div class="col-sm-3">
-                <input type="text" ng-model="usEquityList" class="form-control" id="assetInputField" required>
-              </div>
+              <label for="transaction_costs" class="col-sm-2 col-form-label">Transaction Cost</label>
+              <select ng-model="transaction_costs" class="c-form-profession form-control col-sm-3" required>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+              </select>
         </div>
         <div class="form-group row">
                <label for="objectiveFunction" class="col-sm-2 col-form-label">Objective Function</label>
@@ -55,7 +56,7 @@
             <!-- Submit Button -->
             <div class="form-group row">
               <div class="offset-sm-2 col-sm-10">
-                <button ng-click="frm.$valid && getData(investableUniverse, usEquityList, objectiveFunction, frequency, benchmark, startDate, endDate);
+                <button ng-click="frm.$valid && getData(investableUniverse, usEquityList, objectiveFunction, frequency, benchmark, startDate, endDate, transaction_costs);
                 frm.$valid &&  changeView(); frm.$invalid && invalidFormClick()" id="createChartButton" type="button" class="btn btn-primary">Create Chart</button>
               </div>
             </div>
