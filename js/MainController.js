@@ -196,11 +196,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                     $rootScope.optimizedReturnsValues.push(data.benchmark_portfolio_intersection[key][0]);
                     $rootScope.benchmarkReturnsValues.push(data.benchmark_portfolio_intersection[key][1]);
         }
-        console.log("Dates: " +  $rootScope.optimizedReturnsDates);
-        console.log($rootScope.optimizedReturnsValues);
-        console.log($rootScope.benchmarkReturnsValues);
-
-
+        
         // Parses All Benchmark Data
         for (var key in data.optimized_weights) {
             $scope.optimizedWeightsAsset1.push(Math.abs(data.optimized_weights[key]['0'][1]));
