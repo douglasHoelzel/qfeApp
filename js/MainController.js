@@ -14,6 +14,11 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $rootScope.optimizedReturnsDates = [];
     $rootScope.optimizedReturnsValues = [];
     $scope.optimizedWeightsDates = [];
+
+    $rootScope.benchmarkReturnsDates = [];
+    $rootScope.benchmarkReturnsValues = [];
+    $scope.benchmarkWeightsDates = [];
+
     $rootScope.myChart;
     $rootScope.myChart2;
 
@@ -71,19 +76,16 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                 dataLabels: {enabled: true, color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'}
                     }
                 },
-                series: [{
-                    name: $scope.usEquityList[0],
-                    color: '#5DADE2',
-                    data: [5, 3, 4, 7, 2]
-                }, {
-                    name: $scope.usEquityList[1],
-                    color: '#76D7C4',
-                    data: [2, 2, 3, 2, 1]
-                }, {
-                    name: 'Asset3',
-                    color: '#BFC9CA',
-                    data: [3, 4, 4, 2, 5]
-                }],
+                series: [
+                    { name: $scope.usEquityList[0], color: '#5DADE2', data: [5, 3, 4, 7, 2, 5, 3, 4, 7] },
+                    { name: $scope.usEquityList[1], color: '#76D7C4', data: [2, 2, 3, 2, 1, 2, 3, 2, 1] },
+                    { name: $scope.usEquityList[2], color: '#BFC9CA', data: [3, 4, 4, 2, 5, 4, 4, 2, 5] },
+                    { name: $scope.usEquityList[3], color: '#5ED483', data: [3, 4, 4, 2, 5, 4, 4, 2, 5] },
+                    { name: $scope.usEquityList[4], color: '#4AADA7', data: [3, 4, 4, 2, 5, 4, 4, 2, 5] },
+                    { name: $scope.usEquityList[5], color: '#4C6CAB', data: [3, 4, 4, 2, 5, 4, 4, 2, 5] },
+                    { name: $scope.usEquityList[6], color: '#4968E9', data: [3, 4, 4, 2, 5, 4, 4, 2, 5] },
+                    { name: $scope.usEquityList[7], color: '#47E0B2', data: [3, 4, 4, 2, 5, 4, 4, 2, 5] },
+                    ],
                 exporting: { buttons: {customButton: {text: 'Enlarge',
                  onclick: function () {
                      $scope.selectChartClick("2");
@@ -102,18 +104,17 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         $scope.frequency = frequency.toLowerCase();
         $scope.startDate = Date.parse(startDate).toString("yyyy-MM-dd");
         $scope.endDate = Date.parse(endDate).toString("yyyy-MM-dd");
-        console.log("SD :"+ $scope.startDate + " ED: " + $scope.endDate);
+        console.log("SD: "+ $scope.startDate + " ED: " + $scope.endDate);
         $('#myOverlay').show();
         $rootScope.loading = true;
 
-
         console.log("Starting AJAX Call....");
             $.ajax({
-                 // type: "POST",
-                 type: "GET",
-                  //url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
-                  url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
-                  data: JSON.stringify({ assets: $scope.usEquityList, start_date: $scope.startDate, end_date: $scope.endDate, frequency: $scope.frequency }),
+                  type: "POST",
+                  // type: "GET",
+                  url: "https://api523-nmchenry.cloudapps.unc.edu/api/info",
+                  // url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
+                  data: JSON.stringify({ assets: $scope.usEquityList, benchmark: "IVV", start_date: $scope.startDate, end_date: $scope.endDate, frequency: $scope.frequency, transaction_costs: "0" }),
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
                   success: function(data) {
@@ -163,7 +164,6 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
     // Parses All Data Coming from API
     $scope.parseData = function(data){
-        console.log(data);
         console.log("Inside of data parser");
         // Parses All Optimized Returns Data and Saves it
         for (var key in data.optimized_returns) {
@@ -173,6 +173,16 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         // Parses All Optimized Weights Dates
         for (var key in data.optimized_weights) {
                     $scope.optimizedWeightsDates.push(key);
+        }
+
+        // Parses All Benchmark Data
+        for (var key in data.benchmark_cumulative_returns) {
+                    $rootScope.benchmarkReturnsDates.push(key);
+                    $rootScope.benchmarkReturnsValues.push(data.benchmark_cumulative_returns[key]);
+        }
+        // Parses All Benchmark Data
+        for (var key in data.optimized_weights) {
+                    $scope.benchmarkWeightsDates.push(key);
         }
     }
     // Selects Chart and changes view
