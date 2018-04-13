@@ -112,6 +112,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         $scope.investableUniverse = investableUniverse;
         $scope.usEquityList = assets;
         $scope.transaction_costs = transaction_costs;
+        console.log($scope.transaction_costs);
         $scope.frequency = frequency.toLowerCase();
         $scope.startDate = Date.parse(startDate).toString("yyyy-MM-dd");
         $scope.endDate = Date.parse(endDate).toString("yyyy-MM-dd");
