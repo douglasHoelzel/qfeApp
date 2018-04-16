@@ -127,7 +127,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
             $.ajax({
                   type: "POST",
                   // type: "GET",
-                   //url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
+                  //url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
                   url: "https://qfe-backend-523-maguilar.cloudapps.unc.edu/api/info",
                   data: JSON.stringify({ assets: $scope.investableUniverse, benchmark: $scope.benchmarkList, start_date: $scope.startDate, end_date: $scope.endDate, frequency: $scope.frequency, transaction_costs: $scope.transaction_costs }),
                   contentType: "application/json; charset=UTF-8'",
