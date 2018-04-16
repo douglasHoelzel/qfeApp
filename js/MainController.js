@@ -34,7 +34,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
             title: {
                 text: 'Portfolio vs Benchmark Cumulative Returns'
                   },
-                  yAxis: {title: {text: 'Percent Return'}},
+                  yAxis: {title: {text: 'Percent Return'}, labels: { format: '{value}%' }},
                   xAxis: {
                    categories: $rootScope.optimizedReturnsDates,
                    tickInterval: 1,
@@ -188,8 +188,8 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         // Parses Benchmark and Portfolio Data
         for (var key in data.benchmark_portfolio_intersection) {
                     $rootScope.optimizedReturnsDates.push(key);
-                    $rootScope.optimizedReturnsValues.push(data.benchmark_portfolio_intersection[key][0]);
-                    $rootScope.benchmarkReturnsValues.push(data.benchmark_portfolio_intersection[key][1]);
+                    $rootScope.optimizedReturnsValues.push(data.benchmark_portfolio_intersection[key][0] * 100);
+                    $rootScope.benchmarkReturnsValues.push(data.benchmark_portfolio_intersection[key][1] * 100);
         }
 
         // Parses All Optimized Weights Data
