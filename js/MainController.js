@@ -1,16 +1,16 @@
 var app = angular.module('myApp', ["ngRoute"]);
 app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $rootScope.loading = false;
-    $scope.investableUniverse = "US Equities";
+    $scope.investableUniverse = [];
     $scope.objectiveFunction = "Sharpe Ratio";
     $scope.frequency = "monthly";
-    $scope.benchmark = "S&P500";
     $scope.benchmarkList = [];
     $scope.startDate;
     $scope.endDate;
     $scope.objectiveFunction;
     $scope.location;
     $scope.transaction_costs;
+    $scope.transaction_costs_string;
     $scope.myChart;
     $scope.usEquityList = [];
     $rootScope.optimizedReturnsDates = [];
@@ -24,6 +24,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.optimizedWeightsAsset1 = [];$scope.optimizedWeightsAsset2 = [];$scope.optimizedWeightsAsset3 = [];$scope.optimizedWeightsAsset4 = [];
     $rootScope.myChart;
     $rootScope.myChart2;
+    $scope.chartIsVisible = false;
 
     // Highcharts
     $rootScope.getChart = function getChart() {
@@ -110,6 +111,9 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         else if(benchmark == "usTreasuryBenchmark") {$scope.benchmarkList = ["IEF"]; }
         else {$scope.benchmarkList = ["GSG"]; }
 
+        if(transaction_costs == "0"){ $scope.transaction_costs_string = "No"; }
+        else{ $scope.transaction_costs_string = "Yes"; }
+
         $scope.transaction_costs = transaction_costs;
         console.log($scope.benchmarkList);
         $scope.frequency = frequency.toLowerCase();
@@ -118,7 +122,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         $('#myOverlay').show();
         $rootScope.loading = true;
             $.ajax({
-                   type: "POST",
+                  type: "POST",
                   // type: "GET",
                    //url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
                   url: "https://qfe-backend-523-maguilar.cloudapps.unc.edu/api/info",
@@ -136,6 +140,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                         text: 'Error, Try submitting again',
                       })
                       $('#myOverlay').hide();
+                      $('#formDataContainer').show();
 
                   },
                   complete: function (data) {
@@ -205,6 +210,9 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     }
     // Selects Chart and changes view
     $scope.selectChartClick = function(chartNumber){
+        if($scope.chartIsVisible == true){ $('#formDataContainer').hide(); $scope.chartIsVisible = false; }
+        else { $('#formDataContainer').show(); $scope.chartIsVisible = true; }
+
         if(chartNumber == 1){
             var graphToHide = document.getElementById("chart2");
             var graphToShow= document.getElementById("chart1").width = "1200px";

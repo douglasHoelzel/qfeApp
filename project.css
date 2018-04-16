@@ -216,3 +216,20 @@
   }
 }
 /* Loader End */
+
+#formDataContainer{
+    margin-top: 30px;
+    position: fixed;
+    background-color: #F2F1F1;
+    border: solid;
+    border-color: #F2F1F1;
+    height: 340px;
+    width: 250px;
+    font-size: 10px;
+    border-radius: 0px 10px 10px 0px;
+    box-shadow: 0px 30px 80px rgba(0,0,0,.2);
+}
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+  border-top: none;
+}

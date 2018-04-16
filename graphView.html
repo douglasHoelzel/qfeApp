@@ -1,6 +1,40 @@
 <div id="graphViewContainer" >
 
-
+    <!-- Form Data  -->
+    <div id="formDataContainer">
+        <table class="table" id="tableBody">
+          <tbody>
+            <tr>
+              <th scope="row">Investable Universe</th>
+              <td>{{ investableUniverse }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Transaction Cost</th>
+              <td>{{ transaction_costs_string }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Objective Function</th>
+              <td>{{ objectiveFunction }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Rebalancing Frequency</th>
+              <td>{{ frequency }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Benchmark</th>
+              <td>{{ benchmarkList }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Start Date</th>
+              <td>{{ startDate }}</td>
+            </tr>
+            <tr>
+              <th scope="row">End Date</th>
+              <td>{{ endDate }}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
     <!-- Chart 1 -->
     <div id="chart1Container">
         <div id="chart1"></div>
