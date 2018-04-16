@@ -2,9 +2,11 @@ var app = angular.module('myApp', ["ngRoute"]);
 app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $rootScope.loading = false;
     $scope.investableUniverse = [];
+    $scope.investableUniverseString = "";
     $scope.objectiveFunction = "Sharpe Ratio";
     $scope.frequency = "monthly";
     $scope.benchmarkList = [];
+    $scope.benchmarkListString = "";
     $scope.startDate;
     $scope.endDate;
     $scope.objectiveFunction;
@@ -24,11 +26,10 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.optimizedWeightsAsset1 = [];$scope.optimizedWeightsAsset2 = [];$scope.optimizedWeightsAsset3 = [];$scope.optimizedWeightsAsset4 = [];
     $rootScope.myChart;
     $rootScope.myChart2;
-    $scope.chartIsVisible = false;
+    $scope.chartIsVisible = true;
 
     // Highcharts
     $rootScope.getChart = function getChart() {
-        console.log("Getting graphs now...");
         // Line Chart
         $rootScope.myChart = Highcharts.chart('chart1', {
             title: {
@@ -101,21 +102,23 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
     // Ajax Call for Data
     $scope.getData = function(investableUniverse, transaction_costs, objectiveFunction, frequency, benchmark, startDate, endDate){
-        if (investableUniverse == "usEquity"){ $scope.investableUniverse = ["IYH", "IYF", "IYK", "IYW"]; }
-        else if(investableUniverse == "internationalEquity"){ $scope.investableUniverse = ["EWG", "EWU", "EWJ", "FXI"]; }
-        else if(investableUniverse == "commodities"){ $scope.investableUniverse = ["IAU", "SLV", "VEGI", "FILL"]; }
-        else{ $scope.investableUniverse = ["FXB", "FXCH", "FXE", "FXY"]; }
+        console.log("Benchmark: " + benchmark);
 
-        if(benchmark == "sp500Benchmark"){ $scope.benchmarkList =  ["IVV"]; }
-        else if(benchmark == "internationalEquityBenchmark") {$scope.benchmarkList = ["EFA"]; }
-        else if(benchmark == "usTreasuryBenchmark") {$scope.benchmarkList = ["IEF"]; }
-        else {$scope.benchmarkList = ["GSG"]; }
+        if (investableUniverse == "usEquity"){ $scope.investableUniverse = ["IYH", "IYF", "IYK", "IYW"]; $scope.investableUniverseString = "IYH, IYF, IYK, IYW";}
+        else if(investableUniverse == "internationalEquity"){ $scope.investableUniverse = ["EWG", "EWU", "EWJ", "FXI"]; $scope.investableUniverseString = "EWG, EWU, EWJ, FXI"; }
+        else if(investableUniverse == "commodities"){ $scope.investableUniverse = ["IAU", "SLV", "VEGI", "FILL"]; $scope.investableUniverseString ="IAU, SLV, VEGI, FILL"; }
+        else{ $scope.investableUniverse = ["FXB", "FXCH", "FXE", "FXY"]; $scope.investableUniverseString = "FXB, FXCH, FXE, FXY"; }
+
+        if(benchmark == "sp500Benchmark"){ $scope.benchmarkList =  ["IVV"]; $scope.benchmarkListString = "IVV"; }
+        else if(benchmark == "internationalEquityBenchmark") {$scope.benchmarkList = ["EFA"]; $scope.benchmarkListString = "EFA"; }
+        else if(benchmark == "usTreasuryBenchmark") {$scope.benchmarkList = ["IEF"]; $scope.benchmarkListString = "IEF";}
+        else {$scope.benchmarkList = ["GSG"]; $scope.benchmarkListString = "GSG";}
 
         if(transaction_costs == "0"){ $scope.transaction_costs_string = "No"; }
         else{ $scope.transaction_costs_string = "Yes"; }
 
+        console.log("Scope Benchmark: " + $scope.benchmarkList);
         $scope.transaction_costs = transaction_costs;
-        console.log($scope.benchmarkList);
         $scope.frequency = frequency.toLowerCase();
         $scope.startDate = Date.parse(startDate).toString("yyyy-MM-dd");
         $scope.endDate = Date.parse(endDate).toString("yyyy-MM-dd");
@@ -131,7 +134,6 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   dataType: "json",
                   success: function(data) {
                       $scope.parseData(data);
-                      console.log(data);
                   },
                   error: function(data){
                       $rootScope.loading = false;
@@ -177,7 +179,6 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
     // Parses All Data Coming from API
     $scope.parseData = function(data){
-        console.log("Inside of data parser");
         console.log(data);
 
         // Parses All Optimized Weights Dates
