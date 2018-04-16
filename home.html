@@ -5,7 +5,10 @@
         <div class="form-group row">
                <label for="investableUniverse" class="col-sm-2 col-form-label">Investable Universe</label>
                <select ng-model="investableUniverse" class="c-form-profession form-control col-sm-3" required>
-                   <option value="US Equities">US Equities</option>
+                   <option value="usEquity">US Equities</option>
+                   <option value="internationalEquity">International Equities</option>
+                   <option value="commodities">Commodities</option>
+                   <option value="foreignExchange">Foreign Exchange</option>
                </select>
         </div>
         <div class="form-group row">
@@ -33,10 +36,10 @@
         <div class="form-group row">
                <label for="benchmark" class="col-sm-2 col-form-label">Benchmark</label>
                <select ng-model="benchmark" name="profession" class="c-form-profession form-control col-sm-3" required>
-                   <option value="S&P500">S&P 500</option>
-                   <option value="PH2">Placeholder2</option>
-                   <option value="PH3">Placeholder3</option>
-                   <option value="PH4">Placeholder4</option>
+                   <option value="sp500Benchmark">S&P 500</option>
+                   <option value="internationalEquityBenchmark">International Equity Benchmark</option>
+                   <option value="usTreasuryBenchmark">US 10 Yr Treasury</option>
+                   <option value="commoditiesBenchmark">Commodities Benchmark</option>
                </select>
         </div>
         <!-- Datepicker Start Date -->
@@ -56,7 +59,7 @@
             <!-- Submit Button -->
             <div class="form-group row">
               <div class="offset-sm-2 col-sm-10">
-                <button ng-click="frm.$valid && getData(investableUniverse, usEquityList, objectiveFunction, frequency, benchmark, startDate, endDate, transaction_costs);
+                <button ng-click="frm.$valid && getData(investableUniverse, transaction_costs, objectiveFunction, frequency, benchmark, startDate, endDate);
                 frm.$valid &&  changeView(); frm.$invalid && invalidFormClick()" id="createChartButton" type="button" class="btn btn-primary">Create Chart</button>
               </div>
             </div>
