@@ -1,6 +1,8 @@
 var app = angular.module('myApp', ["ngRoute"]);
 app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $rootScope.loading = false;
+    $rootScope.loading2 = false;
+    $rootScope.loading3 = false;
     $scope.investableUniverse = [];
     $scope.investableUniverseString = "";
     $scope.objectiveFunction = "Sharpe Ratio";
