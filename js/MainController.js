@@ -9,6 +9,8 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.benchmarkListString = "";
     $scope.startDate;
     $scope.endDate;
+    $scope.startDateFormatted;
+    $scope.endDateFormatted;
     $scope.objectiveFunction;
     $scope.location;
     $scope.transaction_costs;
@@ -23,7 +25,10 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.benchmarkWeightsDates = [];
     $scope.benchmarkDataNames = [];
     $scope.optimizedWeightsNames = [];
-    $scope.optimizedWeightsAsset1 = [];$scope.optimizedWeightsAsset2 = [];$scope.optimizedWeightsAsset3 = [];$scope.optimizedWeightsAsset4 = [];
+    $scope.optimizedWeightsAsset1 = [];
+    $scope.optimizedWeightsAsset2 = [];
+    $scope.optimizedWeightsAsset3 = [];
+    $scope.optimizedWeightsAsset4 = [];
     $rootScope.myChart;
     $rootScope.myChart2;
     $scope.chartIsVisible = true;
@@ -117,8 +122,10 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
         $scope.transaction_costs = transaction_costs;
         $scope.frequency = frequency.toLowerCase();
-        $scope.startDate = Date.parse(startDate).toString("yyyy-MM-dd");
-        $scope.endDate = Date.parse(endDate).toString("yyyy-MM-dd");
+        $scope.startDateFormatted = Date.parse(startDate).toString("yyyy-MM-dd");
+        $scope.endDateFormatted = Date.parse(endDate).toString("yyyy-MM-dd");
+        $scope.startDate = startDate;
+        $scope.endDate = endDate;
         $('#myOverlay').show();
         $rootScope.loading = true;
             $.ajax({
@@ -126,7 +133,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   // type: "GET",
                   //url: "https://api523-nmchenry.cloudapps.unc.edu/api/test",
                   url: "https://qfe-backend-523-maguilar.cloudapps.unc.edu/api/info",
-                  data: JSON.stringify({ assets: $scope.investableUniverse, benchmark: $scope.benchmarkList, start_date: $scope.startDate, end_date: $scope.endDate, frequency: $scope.frequency, transaction_costs: $scope.transaction_costs }),
+                  data: JSON.stringify({ assets: $scope.investableUniverse, benchmark: $scope.benchmarkList, start_date: $scope.startDateFormatted, end_date: $scope.endDateFormatted, frequency: $scope.frequency, transaction_costs: $scope.transaction_costs }),
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
                   success: function(data) {
@@ -215,6 +222,9 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
         console.log("Weights Names: "  + $scope.optimizedWeightsNames);
     }
+    $(".datepicker").datepicker({
+        assumeNearbyYear: true
+    });
     // Selects Chart and changes view
     $scope.selectChartClick = function(chartNumber){
         if($scope.chartIsVisible == true){ $('#formDataContainer').hide(); $scope.chartIsVisible = false; }
