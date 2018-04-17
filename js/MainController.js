@@ -102,8 +102,6 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
     // Ajax Call for Data
     $scope.getData = function(investableUniverse, transaction_costs, objectiveFunction, frequency, benchmark, startDate, endDate){
-        console.log("Benchmark: " + benchmark);
-
         if (investableUniverse == "usEquity"){ $scope.investableUniverse = ["IYH", "IYF", "IYK", "IYW"]; $scope.investableUniverseString = "IYH, IYF, IYK, IYW";}
         else if(investableUniverse == "internationalEquity"){ $scope.investableUniverse = ["EWG", "EWU", "EWJ", "FXI"]; $scope.investableUniverseString = "EWG, EWU, EWJ, FXI"; }
         else if(investableUniverse == "commodities"){ $scope.investableUniverse = ["IAU", "SLV", "VEGI", "FILL"]; $scope.investableUniverseString ="IAU, SLV, VEGI, FILL"; }
@@ -117,7 +115,6 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
         if(transaction_costs == "0"){ $scope.transaction_costs_string = "No"; }
         else{ $scope.transaction_costs_string = "Yes"; }
 
-        console.log("Scope Benchmark: " + $scope.benchmarkList);
         $scope.transaction_costs = transaction_costs;
         $scope.frequency = frequency.toLowerCase();
         $scope.startDate = Date.parse(startDate).toString("yyyy-MM-dd");
@@ -133,17 +130,26 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
                   success: function(data) {
-                      $scope.parseData(data);
+                      console.log("data came back success");
+                       var dataObject = Object.keys(data);
+                       console.log(dataObject[0]);
+                       if(dataObject[0] == "Error Code"){
+                           swal({
+                             type: 'error',
+                             text: 'Error, Try submitting again',
+                           })
+                       }else{$scope.parseData(data);}
+
                   },
                   error: function(data){
                       $rootScope.loading = false;
+                      $('#myOverlay').hide();
+                      console.log("error found");
+                      console.log(data);
                       swal({
                         type: 'error',
                         text: 'Error, Try submitting again',
                       })
-                      $('#myOverlay').hide();
-                      $('#formDataContainer').show();
-
                   },
                   complete: function (data) {
                       $rootScope.loading = false;
