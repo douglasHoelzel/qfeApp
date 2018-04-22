@@ -141,12 +141,9 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
                   success: function(data) {
-                      console.log("data came back success");
                       $scope.dataObject = Object.keys(data);
                       $scope.errorDescription = data.Error_Description;
-                      console.log(data);
-                      console.log($scope.dataObject[0]);
-
+                      if($scope.dataObject[0] != "Error_Code"){ $scope.parseData(data); }
                   },
                   error: function(data){
                       $rootScope.loading = false;
@@ -163,17 +160,15 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                       setTimeout(function(){}, 2000);
                        if($scope.dataObject[0] == "Error_Code"){
                            $('#myOverlay').hide();
-                           console.log("inside of error if statement");
                            swal({
                                   type: 'error',
                                   title: 'Error:',
                                   text: $scope.errorDescription,
                               }).then((result) => {
-                                  console.log("Ok Button Clicked in Error Message");
                                   window.history.back();
                               })
                        }else{
-                           $scope.parseData(data);
+
                            $('#myOverlay').hide();
                            swal({
                              type: 'success',
