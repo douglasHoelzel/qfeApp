@@ -141,6 +141,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   success: function(data) {
                       console.log("data came back success");
                        var dataObject = Object.keys(data);
+                       console.log(data);
                        console.log(dataObject[0]);
                        if(dataObject[0] == "Error Code"){
                            swal({
@@ -153,7 +154,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   error: function(data){
                       $rootScope.loading = false;
                       $('#myOverlay').hide();
-                      console.log("error found");
+                      console.log("Error Found");
                       console.log(data);
                       swal({
                         type: 'error',
@@ -194,8 +195,6 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
     // Parses All Data Coming from API
     $scope.parseData = function(data){
-        console.log(data);
-
         // Parses All Optimized Weights Dates
         for (var key in data.optimized_weights) {
                     $scope.optimizedWeightsDates.push(key);
