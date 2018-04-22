@@ -34,6 +34,8 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $rootScope.myChart;
     $rootScope.myChart2;
     $scope.chartIsVisible = true;
+    $scope.dataObject;
+    $scope.errorDescription;
 
     // Highcharts
     $rootScope.getChart = function getChart() {
@@ -140,15 +142,10 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   dataType: "json",
                   success: function(data) {
                       console.log("data came back success");
-                       var dataObject = Object.keys(data);
-                       console.log(data);
-                       console.log(dataObject[0]);
-                       if(dataObject[0] == "Error Code"){
-                           swal({
-                             type: 'error',
-                             text: 'Error, Try submitting again',
-                           })
-                       }else{$scope.parseData(data);}
+                      $scope.dataObject = Object.keys(data);
+                      $scope.errorDescription = data.Error_Description;
+                      console.log(data);
+                      console.log($scope.dataObject[0]);
 
                   },
                   error: function(data){
@@ -164,15 +161,29 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   complete: function (data) {
                       $rootScope.loading = false;
                       setTimeout(function(){}, 2000);
-                      $('#myOverlay').hide();
-                      swal({
-                        type: 'success',
-                        title: 'Chart Successfully Created',
-                        showConfirmButton: false,
-                        timer: 1000
-                        }).then((result) => {
-                               $rootScope.getChart();
-                        })
+                       if($scope.dataObject[0] == "Error_Code"){
+                           $('#myOverlay').hide();
+                           console.log("inside of error if statement");
+                           swal({
+                                  type: 'error',
+                                  title: 'Error:',
+                                  text: $scope.errorDescription,
+                              }).then((result) => {
+                                  console.log("Ok Button Clicked in Error Message");
+                                  window.history.back();
+                              })
+                       }else{
+                           $scope.parseData(data);
+                           $('#myOverlay').hide();
+                           swal({
+                             type: 'success',
+                             title: 'Chart Successfully Created',
+                             showConfirmButton: false,
+                             timer: 1000
+                             }).then((result) => {
+                                    $rootScope.getChart();
+                             })
+                       }
                   }
                 });
     }
