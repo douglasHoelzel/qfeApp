@@ -233,3 +233,10 @@
 .table>tbody>tr>th {
   border-top: none;
 }
+#footerTextBottom{
+    position: fixed;
+    margin-top: 60 !important;
+    padding-left: 160px !important;
+    font-size: 10pt;
+    overflow: hidden;
+  }
