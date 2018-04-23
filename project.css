@@ -47,20 +47,23 @@
     margin-left: -14px;
 }
 #homeButton{
+  margin-left: 10px !important;
+  margin-top: 20px !important;
   background: url(../images/home.png) no-repeat 6px center;
   width: 40px !important;
   height: 40px !important;
   display: inline-block;
 }
 #homeButton:hover{
-    display: block;
-
+  margin-top: 20px !important;
+  display: block;
   background: url(../images/home.png) no-repeat 6px center;
   width: 40px !important;
   height: 40px !important;
   display: inline-block;
 }
 #helpButton{
+  margin-top: 20px !important;
   display: block;
   background: url(../images/help.png) no-repeat 6px center;
   width: 40px !important;
@@ -68,6 +71,7 @@
   display: inline-block;
 }
 #helpButton:hover{
+  margin-top: 20px !important;
   background: url(../images/help.png) no-repeat 6px center;
   width: 40px !important;
   height: 40px !important;
