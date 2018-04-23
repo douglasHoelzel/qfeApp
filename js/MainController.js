@@ -126,8 +126,6 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
         $scope.transaction_costs = transaction_costs;
         $scope.frequency = frequency.toLowerCase();
-        console.log("This is the $scope.frequency");
-        console.log($scope.frequency);
         $scope.startDateFormatted = Date.parse(startDate).toString("yyyy-MM-dd");
         $scope.endDateFormatted = Date.parse(endDate).toString("yyyy-MM-dd");
         $scope.startDate = startDate;
