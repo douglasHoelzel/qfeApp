@@ -141,6 +141,7 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
                   contentType: "application/json; charset=UTF-8'",
                   dataType: "json",
                   success: function(data) {
+                      console.log(data);
                       $scope.dataObject = Object.keys(data);
                       $scope.errorDescription = data.Error_Description;
                       if($scope.dataObject[0] != "Error_Code"){ $scope.parseData(data); }
