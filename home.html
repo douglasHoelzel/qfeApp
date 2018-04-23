@@ -28,6 +28,8 @@
                <label id="rebalancingFrequency" for="frequency" class="col-sm-2 col-form-label">Rebalancing Frequency</label>
                <select ng-model="frequency" name="frequency" class="c-form-profession form-control col-sm-3" required>
                    <option value="monthly">Monthly</option>
+                   <option value="quarterly">Quarterly</option>
+                   <option value="biannual">Biannual</option>
                </select>
         </div>
         <div class="form-group row">
@@ -61,7 +63,7 @@
                 frm.$valid &&  changeView(); frm.$invalid && invalidFormClick()" id="createChartButton" type="button" class="btn btn-primary">Create Chart</button>
               </div>
             </div>
-                <p class="text-center" id="footerTextBottom"><a target="_blank" href="https:www.yahoo.com"> Legal Disclaimer Link</a></p>
+                <p class="text-center" id="footerTextBottom"><a target="_blank" href="http://readme-qfe-523-maguilar.cloudapps.unc.edu/#!/"> Help</a></p>
           </form>
     </div>
 </div>

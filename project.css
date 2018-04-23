@@ -235,8 +235,8 @@
 }
 #footerTextBottom{
     position: fixed;
-    margin-top: 60 !important;
-    padding-left: 160px !important;
+    margin-top: 30 !important;
+    padding-left: 175px !important;
     font-size: 10pt;
     overflow: hidden;
   }
