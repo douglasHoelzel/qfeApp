@@ -50,13 +50,28 @@
   background: url(../images/home.png) no-repeat 6px center;
   width: 40px !important;
   height: 40px !important;
-  display: block;
+  display: inline-block;
 }
 #homeButton:hover{
+    display: block;
+
   background: url(../images/home.png) no-repeat 6px center;
   width: 40px !important;
   height: 40px !important;
+  display: inline-block;
+}
+#helpButton{
   display: block;
+  background: url(../images/help.png) no-repeat 6px center;
+  width: 40px !important;
+  height: 40px !important;
+  display: inline-block;
+}
+#helpButton:hover{
+  background: url(../images/help.png) no-repeat 6px center;
+  width: 40px !important;
+  height: 40px !important;
+  display: inline-block;
 }
  /* End Navbar Styling */
  #headingPadder{
