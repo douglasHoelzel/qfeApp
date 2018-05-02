@@ -19,18 +19,9 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
     $scope.transaction_costs_string;
     $scope.myChart;
     $scope.usEquityList = [];
-    $rootScope.optimizedReturnsDates = [];
-    $rootScope.optimizedReturnsValues = [];
-    $scope.optimizedWeightsDates = [];
     $rootScope.benchmarkReturnsDates = [];
-    $rootScope.benchmarkReturnsValues = [];
     $scope.benchmarkWeightsDates = [];
     $scope.benchmarkDataNames = [];
-    $scope.optimizedWeightsNames = [];
-    $scope.optimizedWeightsAsset1 = [];
-    $scope.optimizedWeightsAsset2 = [];
-    $scope.optimizedWeightsAsset3 = [];
-    $scope.optimizedWeightsAsset4 = [];
     $rootScope.myChart;
     $rootScope.myChart2;
     $scope.chartIsVisible = true;
@@ -202,6 +193,17 @@ app.controller('myCtrl', function($scope, $http, $location, $rootScope) {
 
     // Parses All Data Coming from API
     $scope.parseData = function(data){
+        //Initialize data structures
+        $rootScope.optimizedReturnsDates = []; //to parse data
+        $rootScope.optimizedReturnsValues = []; //to parse data
+        $scope.optimizedWeightsDates = []; //to parse data
+        $rootScope.benchmarkReturnsValues = []; //to parse data
+        $scope.optimizedWeightsNames = []; //to parse data
+        $scope.optimizedWeightsAsset1 = [];// to parse data
+        $scope.optimizedWeightsAsset2 = [];//to parse data
+        $scope.optimizedWeightsAsset3 = [];//to parse data
+        $scope.optimizedWeightsAsset4 = [];//to parse data
+
         // Parses All Optimized Weights Dates
         for (var key in data.optimized_weights) {
                     $scope.optimizedWeightsDates.push(key);
